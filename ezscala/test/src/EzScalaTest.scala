@@ -3,4 +3,8 @@ import org.junit.jupiter.api.Test
 
 class EzScalaTest:
     @Test def myTest() =
-        println("./.gitignore".file)
+        "./.gitignore".file
+        |! println
+        |> {_.getAbsolutePath}
+        |> println
+        println
