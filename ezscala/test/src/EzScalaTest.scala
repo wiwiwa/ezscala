@@ -3,4 +3,4 @@ import org.junit.jupiter.api.Test
 
 class EzScalaTest:
     @Test def myTest() =
-        println("running test")
+        println("./.gitignore".file)
