@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test
 class EzScalaTest:
     @Test def myTest() =
         "./.gitignore".file
-        |! println
-        |> {_.getAbsolutePath}
-        |> println
-        println
+            |! { "File content of " + _ + ": " |> println }
+            |> {_.text}
+            |> println
