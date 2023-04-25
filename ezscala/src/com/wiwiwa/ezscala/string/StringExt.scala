@@ -2,8 +2,8 @@ package com.wiwiwa.ezscala.string
 
 import java.io.File
 import java.net.URI
+import java.nio.charset.StandardCharsets
 
 trait StringExt:
     extension (string:String)
-        def file = new File(string)
-        def url = new URI(string).toURL
+        def bytes = string.getBytes(StandardCharsets.UTF_8)
