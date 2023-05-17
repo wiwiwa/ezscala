@@ -1,4 +1,4 @@
-package com.wiwiwa.ezscala.io
+package com.wiwiwa.ezscala.extensions
 
 import java.io.{File, FileInputStream, InputStream}
 import java.net.{URI, URL}

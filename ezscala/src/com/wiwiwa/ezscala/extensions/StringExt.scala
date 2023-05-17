@@ -1,4 +1,4 @@
-package com.wiwiwa.ezscala.string
+package com.wiwiwa.ezscala.extensions
 
 import java.io.File
 import java.net.URI
