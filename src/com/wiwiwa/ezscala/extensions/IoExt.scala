@@ -19,3 +19,10 @@ trait IoExt:
             Using.resource(url.openStream())(action)
         def bytes = url.withStream{_.readAllBytes}
         def text = new String(url.bytes, StandardCharsets.UTF_8)
+    extension (stream:InputStream)
+        def bytes = new Iterator[Byte]:
+            var _next = 1
+            override def hasNext =
+                _next = stream.read()
+                _next>=0
+            override def next() = _next.toByte
