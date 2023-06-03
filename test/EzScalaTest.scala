@@ -15,5 +15,5 @@ class EzScalaTest extends munit.FunSuite:
               |! { "Checking content of file " + _ |> println }
               |> { _.text.contains(".*") }
         }
-        assert( "https://www.gov.cn/".url.text.contains("政府") )
+        assert( "https://www.gov.cn/".http.get().text.contains("政府") )
     }

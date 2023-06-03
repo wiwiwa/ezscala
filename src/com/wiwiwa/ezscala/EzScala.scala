@@ -6,3 +6,4 @@ object EzScala extends PipeExt,
   StringExt, IoExt
 
 export EzScala.*
+export net.HttpClient
