@@ -1,7 +1,5 @@
 package com.wiwiwa.ezscala.extensions
 
-import scala.annotation.targetName
-
 trait PipeExt:
   extension[T] (value:T)
     /** Map T to R */
