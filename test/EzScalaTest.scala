@@ -3,6 +3,16 @@
 import com.wiwiwa.ezscala.*
 
 class EzScalaTest extends munit.FunSuite:
+    test("LogicalTruthyOperator"){
+        assertEquals(true && "1" || "0", "1")
+        assertEquals(false && "1" || "0", "0")
+        assertEquals(1 && "1" || "0", "1")
+        assertEquals(0 && "1" || "0", "0")
+        assertEquals("" && "1" || "0", "0")
+        assertEquals("0" && "1" || "0", "1")
+        assertEquals("false" && "1" || "0", "1")
+        assertEquals(null && "1" || "0", "0")
+    }
     test("PipeOperator"){
         val list = List(9,10,11)
         assertEquals( list|Integer.toHexString, List("9","a","b") )

@@ -1,7 +1,5 @@
 package com.wiwiwa.ezscala.extensions
 
-import java.io.File
-import java.net.URI
 import java.nio.charset.StandardCharsets
 
 trait StringExt:
