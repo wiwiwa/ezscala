@@ -2,6 +2,8 @@
 
 import com.wiwiwa.ezscala.*
 
+import java.io.ByteArrayOutputStream
+
 class EzScalaTest extends munit.FunSuite:
     test("LogicalTruthyOperator"){
         assertEquals(true && "1" || "2", "1")
@@ -19,11 +21,14 @@ class EzScalaTest extends munit.FunSuite:
         assertEquals( list|?{_<10}, List(9) )
         assertEquals( list|>|{e=>List(e,e*e)}, List(9,81,10,100,11,121) )
     }
-    test("Url"){
+    test("IO"){
+        val file =  "./.gitignore".file
+        assert{ file.text.contains(".*") }
         assert{
-            "./.gitignore".file
-              |! { "Checking content of file " + _ |> println }
-              |> { _.text.contains(".*") }
+            val buf = new ByteArrayOutputStream()
+            file.withStream:
+                _ >> buf
+            buf.toByteArray.string.contains(".*")
         }
         assert( "https://www.gov.cn/".http.get().text.contains("政府") )
     }
