@@ -4,10 +4,10 @@ import com.wiwiwa.ezscala.*
 
 class EzScalaTest extends munit.FunSuite:
     test("LogicalTruthyOperator"){
-        assertEquals(true && "1" || "0", "1")
-        assertEquals(false && "1" || "0", "0")
-        assertEquals(1 && "1" || "0", "1")
-        assertEquals(0 && "1" || "0", "0")
+        assertEquals(true && "1" || "2", "1")
+        assertEquals(false && "1" || "2", "2")
+        assertEquals(1 && "1" || "2", "1")
+        assertEquals(0 && "1" || "2", "2")
         assertEquals("" && "1" || "0", "0")
         assertEquals("0" && "1" || "0", "1")
         assertEquals("false" && "1" || "0", "1")
