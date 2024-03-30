@@ -24,14 +24,14 @@ class EzScalaTest extends munit.FunSuite:
         assert{ file.text.contains(".*") }
         assert{
             val buf = new ByteArrayOutputStream()
-            file.withStream:
-                _ >> buf
+            file.withStream(_ >> buf)
             buf.toByteArray.string.contains(".*")
         }
         assert( "https://www.gov.cn/".http.get().text.contains("政府") )
     test("VirtualThread"):
-        val  ret = go:
-            println(Thread.currentThread.getName)
-            "returned string"
-        go.await(-1)
-        assert(ret.get().nonEmpty)
+        val ret1 = (0 until 3).goEach: i=>
+            Thread.sleep(i*500)
+            System.currentTimeMillis
+        val  ret2 = go:
+            System.currentTimeMillis
+        assert{ ret1.get().last > ret2.get()+500  }
