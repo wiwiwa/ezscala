@@ -3,6 +3,7 @@
 import com.wiwiwa.ezscala.*
 
 import java.io.ByteArrayOutputStream
+import java.util.concurrent.atomic.AtomicInteger
 
 class EzScalaTest extends munit.FunSuite:
     test("LogicalTruthyOperator"):
@@ -29,9 +30,13 @@ class EzScalaTest extends munit.FunSuite:
         }
         assert( "https://www.gov.cn/".http.get().text.contains("政府") )
     test("VirtualThread"):
-        val ret1 = (0 until 3).goEach: i=>
-            Thread.sleep(i*500)
-            System.currentTimeMillis
+        val counter = new AtomicInteger()
+        val ret1 = (0 until 5).goEach(3): _=>
+          counter.incrementAndGet()
+          Thread.sleep(100)
+          counter.decrementAndGet()
         val  ret2 = go:
-            System.currentTimeMillis
-        assert{ ret1.get().last > ret2.get()+500  }
+          Thread.sleep(50)
+          counter.get()
+        assert{ ret2.get() == 3  }
+        ret1.get()  //wait all thread to stop

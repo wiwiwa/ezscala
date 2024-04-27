@@ -51,7 +51,7 @@ class HttpClient(baseUrl:String, headers:Map[String,String]=Map.empty)
 extends HttpRequestData(baseUrl, headers=headers,
   client=JdkHttpClient.newBuilder.cookieHandler(new CookieManager()).build()
 ):
-  def get(uri:String, params:(String,String)*) = this.copy(url=baseUrl+uri).get(params:_*)
-  def post(uri:String, params:(String,String)*) = this.copy(url=baseUrl+uri).post(params:_*)
+  def get(uri:String, params:(String,String)*) = this.copy(url=baseUrl+uri).get(params*)
+  def post(uri:String, params:(String,String)*) = this.copy(url=baseUrl+uri).post(params*)
 
-class HttpStatusException(response: HttpResponse[_]) extends Exception(s"http status ${response.statusCode}")
+class HttpStatusException(response: HttpResponse[?]) extends Exception(s"http status ${response.statusCode}")
