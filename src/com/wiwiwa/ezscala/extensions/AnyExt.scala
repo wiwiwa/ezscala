@@ -14,7 +14,7 @@ trait AnyExt:
           case _: Float => 0.asInstanceOf[V]
           case _ => null.asInstanceOf[V]
     /** if `value` is truthy, return `value`, else return rightValue */
-    inline def `||`[V](rightValue: =>V): T|V =
+    inline def `||`(rightValue: =>T): T =
       if isTruthy(value) then value else rightValue
 
 object AnyExt:
