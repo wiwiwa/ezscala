@@ -1,8 +1,8 @@
 package com.wiwiwa.ezscala.extensions
 
-import com.wiwiwa.ezscala.extensions.AnyExt.*
+import com.wiwiwa.ezscala.extensions.GenericExt.*
 
-trait AnyExt:
+trait GenericExt:
   extension[T] (value:T)
     /** if `value` is truthy, return `truthyValue`, else return null */
     inline def `&&`[V](truthyValue: =>V): V =
@@ -17,7 +17,7 @@ trait AnyExt:
     inline def `||`(rightValue: =>T): T =
       if isTruthy(value) then value else rightValue
 
-object AnyExt:
+object GenericExt:
   def isTruthy[T](value: T): Boolean = value match
     case b: Boolean => b
     case i: Int => i != 0

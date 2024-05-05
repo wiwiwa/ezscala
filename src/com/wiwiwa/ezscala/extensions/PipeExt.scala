@@ -6,6 +6,13 @@ trait PipeExt:
     def `|>` [R](mapFn: T=>R): R = mapFn(value)
     /** apply action to T, and return T */
     def `|!` [R](action: T=>R): T = { action(value); value }
+    /** assertion */
+    inline def `|==`(expected: T): Unit = if value!=expected then
+      val msg = "Assertion failed:\n" +
+        s" actual value:   $value\n" +
+        s" expected value: $expected"
+      throw new AssertionError(msg)
+
   extension[T] (iter: Iterable[T])
     /** map */
     def `|>`[R](predicate:T=>R): Iterable[R] = iter.map(predicate)
