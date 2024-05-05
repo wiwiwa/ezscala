@@ -1,6 +1,7 @@
 //> using toolkit default
 
-import com.wiwiwa.ezscala.*
+import com.wiwiwa.ezscala.EzScala.*
+import com.wiwiwa.ezscala.codec.Base64
 
 import java.io.ByteArrayOutputStream
 import java.util.concurrent.atomic.AtomicInteger
@@ -40,3 +41,6 @@ class EzScalaTest extends munit.FunSuite:
           counter.get()
         assert{ ret2.get() == 3  }
         ret1.get()  //wait all thread to stop
+    test("Codec"):
+      val str = "{b:1}"
+      str.bytes |> Base64.encode |> Base64.decode |> string |== str
