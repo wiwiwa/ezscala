@@ -1,3 +1,8 @@
+//> using dep com.github.plokhotnyuk.jsoniter-scala::jsoniter-scala-core:2.30.1
+//> using compileOnly.dep com.github.plokhotnyuk.jsoniter-scala::jsoniter-scala-macros:2.30.1
+
+//> using jvm 21
+
 //> using packaging.packageType library
 //> using packaging.output .out/ezscala.jar
 //> using publish.organization "com.wiwiwa"

@@ -1,7 +1,7 @@
-//> using toolkit default
+//> using test.toolkit 0.4.0
 
 import com.wiwiwa.ezscala.EzScala.*
-import com.wiwiwa.ezscala.codec.Base64
+import com.wiwiwa.ezscala.codec.{Base64, Json}
 
 import java.io.ByteArrayOutputStream
 import java.util.concurrent.atomic.AtomicInteger
@@ -42,5 +42,11 @@ class EzScalaTest extends munit.FunSuite:
         assert{ ret2.get() == 3  }
         ret1.get()  //wait all thread to stop
     test("Codec"):
-      val str = "{b:1}"
-      str.bytes |> Base64.encode |> Base64.decode |> string |== str
+      val json = """{"name":"张三","age":20}"""
+      val base64 = Base64.urlEncode(json.bytes)
+      Base64.decode(base64).string |== json
+      val user = Json.decode[User](json)
+      user.age |== 20
+      Json.encode(user) |== json
+
+case class User(name:String, age:Int)
