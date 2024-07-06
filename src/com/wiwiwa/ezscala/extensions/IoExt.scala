@@ -7,6 +7,14 @@ import java.nio.charset.StandardCharsets
 import scala.util.Using
 
 trait IoExt:
+    extension[T<:AutoCloseable] (resource:T)
+        /** Consume resource,and close resource */
+        inline def using[V](action: T=>V): V = use(action)
+        /** Consume resource,and close resource  */
+        def use[V](action: T=>V): V =
+            try action(resource)
+            finally resource.close()
+
     extension (string: String)
         def file = new File(string)
         def http = net.HttpRequestData(string)
@@ -15,9 +23,7 @@ trait IoExt:
         def >>(file: File): Unit = string.getBytes(StandardCharsets.UTF_8) >> file
 
     extension (file:File)
-        def withStream[R](action: InputStream=>R): R =
-            Using.resource( new FileInputStream(file) )(action)
-        def bytes = file.withStream{ _.readAllBytes }
+        def bytes = new FileInputStream(file).use{ _.readAllBytes }
         def text = new String(file.bytes, StandardCharsets.UTF_8)
 
     extension (stream:InputStream)

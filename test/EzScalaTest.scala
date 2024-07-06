@@ -3,7 +3,7 @@
 import com.wiwiwa.ezscala.EzScala.*
 import com.wiwiwa.ezscala.codec.{Base64, Json}
 
-import java.io.ByteArrayOutputStream
+import java.io.FileInputStream
 import java.util.concurrent.atomic.AtomicInteger
 
 class EzScalaTest extends munit.FunSuite:
@@ -25,9 +25,9 @@ class EzScalaTest extends munit.FunSuite:
         val file =  "./.gitignore".file
         assert{ file.text.contains(".*") }
         assert{
-            val buf = new ByteArrayOutputStream()
-            file.withStream(_ >> buf)
-            buf.toByteArray.string.contains(".*")
+          val s = new FileInputStream(file).use: f=>
+            new String(f.readAllBytes())
+          s == file.text
         }
         assert( "https://www.gov.cn/".http.get().text.contains("政府") )
     test("VirtualThread"):
