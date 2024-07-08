@@ -21,13 +21,13 @@ case class HttpRequestData(url:String,
       val encoded = urlEncode(params)
       val sep = if url.contains('?') then "&" else "?"
       url + sep + encoded
-    HttpRequest.newBuilder(URI(getUri)) |> sendRequest
+    HttpRequest.newBuilder(URI(getUri)) | sendRequest
   def post(params:(String,String)*) =
     val form = urlEncode(params)
     HttpRequest.newBuilder(URI(url))
       .header("Content-Type","application/x-www-form-urlencoded")
       .POST(BodyPublishers.ofString(form))
-      |> sendRequest
+      | sendRequest
   private def urlEncode(params: Iterable[(String,String)]) =
     params.map { (k, v) => URLEncoder.encode(k, StandardCharsets.UTF_8) + '=' + URLEncoder.encode(v.toString, StandardCharsets.UTF_8) }
     .mkString("&")
