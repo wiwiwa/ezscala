@@ -3,9 +3,9 @@ package com.wiwiwa.ezscala.extensions
 trait PipeExt:
   extension[T] (value:T)
     /** Map T to R */
-    def `|` [R](mapFn: T=>R): R = mapFn(value)
+    def `>>` [R](mapFn: T=>R): R = mapFn(value)
     /** apply action to T, and return T */
-    def `|=` [R](action: T=>R): T = { action(value); value }
+    def `>>=` [R](action: T=>R): T = { action(value); value }
     /** assertion */
     inline def `|==`(expected: T): Unit = if value!=expected then
       val msg = "Assertion failed:\n" +
