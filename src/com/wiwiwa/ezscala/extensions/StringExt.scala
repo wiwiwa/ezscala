@@ -18,6 +18,8 @@ trait StringExt:
         def replace(regex:Regex, replacement:String) = regex.replaceFirstIn(string,replacement)
         def replaceAll(regex:Regex, replacement:String) = regex.replaceAllIn(string,replacement)
         def replaceAll(regex:Regex, replacer:Regex.Match=>String) = regex.replaceAllIn(string,replacer)
+        
+        def debase64(): Array[Byte] = Base64.decode(string)
 
     extension (buf:Array[Byte])
         def string = new String(buf,StandardCharsets.UTF_8)
