@@ -1,6 +1,6 @@
 //> using test.toolkit 0.4.0
 
-import com.wiwiwa.ezscala.EzScala.*
+import com.wiwiwa.ezscala.*
 import com.wiwiwa.ezscala.codec.{Base64, Json}
 
 import java.io.FileInputStream
@@ -48,5 +48,8 @@ class EzScalaTest extends munit.FunSuite:
       val user = Json.decode[User](json)
       user.age |== 20
       Json.encode(user) |== json
+    test("os"):
+      assert( os.sh("echo $HOME").startsWith("/") )
+      assert( os.run("ls /").contains("etc\n") )
 
 case class User(name:String, age:Int)
