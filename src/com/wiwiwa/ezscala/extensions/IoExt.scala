@@ -35,8 +35,7 @@ trait IoExt:
             override def next() = _next.toByte
         def >>(out:OutputStream): Unit =
             stream.transferTo(out)
-        def >>(file:File): Unit = Using.resource(new FileOutputStream(file)):
-          stream >> _
+        def >>(file:File): Unit = new FileOutputStream(file).use(stream.>>)
 
     extension (buf:Iterator[Byte])
         def >>(out:OutputStream): Unit = buf.map(_.toInt).foreach(out.write)
@@ -45,6 +44,6 @@ trait IoExt:
     extension (buf:Array[Byte])
         def >>(out:OutputStream): Unit = buf.iterator >> out
         def >>(file:File): Unit = buf.iterator >> file
-    extension (buf:Seq[Byte])
+    extension (buf:Iterable[Byte])
         def >>(out:OutputStream): Unit = buf.iterator >> out
         def >>(file:File): Unit = buf.iterator >> file
