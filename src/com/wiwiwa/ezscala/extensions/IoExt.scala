@@ -26,6 +26,8 @@ trait IoExt:
         def bytes = new FileInputStream(file).use{ _.readAllBytes }
         def text = new String(file.bytes, StandardCharsets.UTF_8)
 
+        def child(item:String) = new File(file, item)
+
     extension (stream:InputStream)
         def bytes = new Iterator[Byte]:
             var _next = 1
