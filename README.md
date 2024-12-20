@@ -30,6 +30,8 @@ It provides the following features:
       * `use`: consume resource, and auto close it
     * `File`
       * `bytes`: return all bytes as a `Array[Byte]`
+      * `/`: resolve child item in directory
+      * `parent`: resolve parent directory
     * `InputStream`
       * `bytes`: return all bytes as a `Array[Byte]`
     * `HttpRequestData`:
