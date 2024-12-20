@@ -5,10 +5,10 @@ It provides the following features:
   * Operators
     * `&&`: AND operator for Truthy/Falsy value
     * `||`: OR operator for Truthy/Falsy value
-    * `>>`: map left value to another value, by right function
+    * `|`: map left value to another value, by right function
       * For `String`: write string in UTF-8 encoding to a `File` or `OutputStream`
       * For `Array[Byte]`, `Iterator[Byte]`, `Iterable[Byte]`, `InputStream`: write bytes in UTF-8 encoding to a `File` or `OutputStream`
-    * `>>=`: call right function, and return left value
+    * `|=`: call right function, and return left value
     * `|==`: assert left value is true, or throw AssertionError
     * `|>`: alias of `Iterable.map`, `Iterator.map`
     * `|>|`: alias of `Iterable.flatmap`, `Iterator.flatmap`
