@@ -42,14 +42,16 @@ class EzScalaTest extends munit.FunSuite:
         assert{ ret2.get() == 3  }
         ret1.get()  //wait all thread to stop
     test("Codec"):
-      val json = """{"name":"张三","age":20}"""
-      val base64 = Base64.urlEncode(json.bytes)
+      //base64 test
+      val json = """{"name":"张三","age":20,"id":{"value":5}}"""
+      val base64 = json.bytes.base64
       Base64.decode(base64).string |== json
-      val user = Json.decode[User](json)
+      //json test
+      case class User[T](name:String, age:Int, id:T)
+      case class ID(value:Int)
+      val user = Json.decode[User[ID]](json)
       user.age |== 20
       Json.encode(user) |== json
     test("os"):
       assert( os.sh("echo $HOME").startsWith("/") )
       assert( os.run("ls /").contains("etc\n") )
-
-case class User(name:String, age:Int)

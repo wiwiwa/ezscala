@@ -11,4 +11,8 @@ object Base64:
   def decode(base64:String): Array[Byte] =
     val dec = if base64.exists{c=> c=='-'||c=='_'} then urlDecoder else decoder
     dec.decode(base64)
-  def isBase64(s:String) = s.forall{c=> c>='0'&&c<='9' || c>='A'&&c<='Z' || c>='a'&&c<='z' || c=='+' || c=='/' || c=='=' || c=='\n' || c=='\r'}
+  def isBase64(s:String) = s.forall{
+    case '+' | '/' | '-' | '_' | '=' | '\n' | '\r' => true
+    case c if c>='0'&&c<='9' || c>='A'&&c<='Z' || c>='a'&&c<='z' => true
+    case _ => false
+  }
