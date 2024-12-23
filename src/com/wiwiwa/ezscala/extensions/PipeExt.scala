@@ -28,7 +28,7 @@ trait PipeExt:
     /** map */
     def `|>`[R](predicate:T=>R): Iterator[R] = iter.map(predicate)
     /** flatmap */
-    def `||`[R](predicate:T=>IterableOnce[R]): Iterator[R] = iter.flatMap(predicate)
+    def `|>|`[R](predicate:T=>IterableOnce[R]): Iterator[R] = iter.flatMap(predicate)
     /** filter */
     def `|?`(predicate:T=>Boolean): Iterator[T] = iter.filter(predicate)
     /** tapEach */
