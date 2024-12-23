@@ -1,4 +1,4 @@
-//> using test.toolkit 0.4.0
+//> using test.toolkit 0.6.0
 
 import com.wiwiwa.ezscala.*
 import com.wiwiwa.ezscala.codec.{Base64, Json}

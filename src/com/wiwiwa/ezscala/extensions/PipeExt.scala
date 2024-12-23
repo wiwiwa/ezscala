@@ -21,9 +21,9 @@ trait PipeExt:
     /** filter */
     def `|?`(predicate:T=>Boolean): Iterable[T] = iter.filter(predicate)
     /** tapEach */
-    def `|!`[R](action:T=>R): Iterable[T] = iter.tapEach(action)
+    def `|!=`[R](action:T=>R): Iterable[T] = iter.tapEach(action)
     /** foreach */
-    def `|!!`[R](action:T=>R): Unit = iter.foreach(action)
+    def `|!`[R](action:T=>R): Unit = iter.foreach(action)
   extension[T] (iter: Iterator[T])
     /** map */
     def `|>`[R](predicate:T=>R): Iterator[R] = iter.map(predicate)
@@ -32,6 +32,6 @@ trait PipeExt:
     /** filter */
     def `|?`(predicate:T=>Boolean): Iterator[T] = iter.filter(predicate)
     /** tapEach */
-    def `|!`[R](action:T=>R): Iterator[T] = iter.tapEach(action)
+    def `|!=`[R](action:T=>R): Iterator[T] = iter.tapEach(action)
     /** foreach */
-    def `|!!`[R](action:T=>R): Unit = iter.foreach(action)
+    def `|!`[R](action:T=>R): Unit = iter.foreach(action)

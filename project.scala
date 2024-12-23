@@ -1,5 +1,5 @@
-//> using dep com.github.plokhotnyuk.jsoniter-scala::jsoniter-scala-core:2.30.1
-//> using compileOnly.dep com.github.plokhotnyuk.jsoniter-scala::jsoniter-scala-macros:2.30.1
+//> using dep com.github.plokhotnyuk.jsoniter-scala::jsoniter-scala-core:2.32.0
+//> using compileOnly.dep com.github.plokhotnyuk.jsoniter-scala::jsoniter-scala-macros:2.32.0
 
 //> using jvm 21
 

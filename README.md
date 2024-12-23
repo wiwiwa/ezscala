@@ -13,8 +13,8 @@ It provides the following features:
     * `|>`: alias of `Iterable.map`, `Iterator.map`
     * `|>|`: alias of `Iterable.flatmap`, `Iterator.flatmap`
     * `|?`: alias of `Iterable.filter`, `Iterator.filter`
-    * `|!`: alias of `Iterable.tapeach`, `Iterator.tapeach`
-    * `|!!`: alias of `Iterable.foreach`, `Iterator.foreach`
+    * `|!=`: alias of `Iterable.tapeach`, `Iterator.tapeach`
+    * `|!`: alias of `Iterable.foreach`, `Iterator.foreach`
   * `String`:
     * `bytes`: get UTF-8 encoded bytes of String
     * `find`, `find1`, `find2`, `find3`: find substring by regular expression, and return found substring, or group 1/2/3
